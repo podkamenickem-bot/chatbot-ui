@@ -8,7 +8,7 @@ export async function middleware(request: NextRequest) {
   if (i18nResult) return i18nResult
   }
  const { pathname } = request.nextUrl
-  const isPublicPath = pathname.includes("/")
+  const isPublicPath = pathname.includes("/share/")
   if (isPublicPath) {
     return NextResponse.next()
   try {
