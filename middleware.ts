@@ -7,6 +7,11 @@ export async function middleware(request: NextRequest) {
   const i18nResult = i18nRouter(request, i18nConfig)
   if (i18nResult) return i18nResult
 
+  const { pathname } = request.nextUrl
+  const isPublicPath = pathname.includes("/share/")
+  if (isPublicPath) {
+    return NextResponse.next()
+  }
   try {
     const { supabase, response } = createClient(request)
 
